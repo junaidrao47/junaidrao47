@@ -61,9 +61,9 @@
 
 <!--START_SECTION:badges-->
 <p align="center">
-	<a href="https://www.credly.com/badges/9446481c-3d97-403d-a58a-9b283ea854d6/public_url" title="Cloud DevOps was issued by Intel to Rao Muhammad Junaid.">
-		<img src="https://images.credly.com/images/f953f0f3-d130-4d6d-8d5d-62d8b24eee9b/linkedin_thumb_image.png" width="120" alt="Cloud DevOps" />
-	</a>
+  <a href="https://www.credly.com/badges/9446481c-3d97-403d-a58a-9b283ea854d6/public_url" title="Cloud DevOps was issued by Intel to Rao Muhammad Junaid.">
+    <img src="https://images.credly.com/images/f953f0f3-d130-4d6d-8d5d-62d8b24eee9b/linkedin_thumb_image.png" width="120" alt="Cloud DevOps" />
+  </a>
 </p>
 <!--END_SECTION:badges-->
 
