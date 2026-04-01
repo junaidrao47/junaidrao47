@@ -1,0 +1,13 @@
+name: Update Badges
+on:
+  workflow_dispatch:
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: pemtajo/badge-readme@main
+        with:
+          CREDLY_USER: fahad-rajput.68e65434
+          NUMBER_LAST_BADGES: 0  # 0 = show all badges
