@@ -9,6 +9,22 @@ function extractBadgeUrls(markdown) {
   return Array.from(new Set(markdown.match(re) ?? []));
 }
 
+function getCredlySkillsPageUrl() {
+  // Preferred: explicit full URL
+  if (process.env.CREDLY_SKILLS_URL && process.env.CREDLY_SKILLS_URL.startsWith('http')) {
+    return process.env.CREDLY_SKILLS_URL;
+  }
+
+  // Fallback: username/slug only
+  const user = process.env.CREDLY_USER;
+  if (user && user.length > 0) {
+    return `https://www.credly.com/users/${user}/skills`;
+  }
+
+  // Repo default
+  return 'https://www.credly.com/users/muhammad-junaid.370fa5c7/skills';
+}
+
 function normalizeSkill(text) {
   return text
     .replace(/\s+/g, ' ')
@@ -98,6 +114,50 @@ async function scrapeSkillsFromBadge(page, badgeUrl) {
   return Array.from(new Set(normalized));
 }
 
+async function scrapeSkillsFromSkillsPage(page, skillsPageUrl) {
+  await page.goto(skillsPageUrl, { waitUntil: 'networkidle' });
+
+  // Give the SPA a moment to render.
+  await page.waitForTimeout(2000);
+
+  const skills = await page.evaluate(() => {
+    const normalize = (s) => (s || '').replace(/\s+/g, ' ').trim();
+
+    const candidates = new Set();
+    const elements = Array.from(document.querySelectorAll('a,button,li,span,div'));
+
+    for (const el of elements) {
+      const text = normalize(el.textContent);
+      if (!text) continue;
+
+      const href = (el.getAttribute('href') || '').toLowerCase();
+      const cls = (el.getAttribute('class') || '').toLowerCase();
+      const id = (el.getAttribute('id') || '').toLowerCase();
+
+      // Bias toward elements that look skill-related.
+      if (href.includes('skill') || cls.includes('skill') || id.includes('skill')) {
+        candidates.add(text);
+      }
+    }
+
+    // If that didn't find anything, fall back to scanning the page for many short "chip"-like tokens.
+    if (candidates.size === 0) {
+      for (const el of elements) {
+        const text = normalize(el.textContent);
+        if (!text) continue;
+        if (text.length >= 2 && text.length <= 60) {
+          candidates.add(text);
+        }
+      }
+    }
+
+    return Array.from(candidates);
+  });
+
+  const normalized = skills.map(normalizeSkill).filter(looksLikeSkill);
+  return Array.from(new Set(normalized));
+}
+
 function buildSkillsBlock(skills) {
   if (skills.length === 0) {
     return `${START}\n(Unable to extract skills automatically yet.)\n${END}`;
@@ -126,25 +186,37 @@ async function main() {
   const readme = await fs.readFile(README_PATH, 'utf8');
   const badgeUrls = extractBadgeUrls(readme);
 
-  if (badgeUrls.length === 0) {
-    throw new Error('No Credly badge public_url links found in README.md');
-  }
-
   const { chromium } = await import('playwright');
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 
   const allSkills = new Set();
 
-  for (const url of badgeUrls) {
-    try {
-      const skills = await scrapeSkillsFromBadge(page, url);
-      for (const s of skills) allSkills.add(s);
-      // be polite
-      await page.waitForTimeout(500);
-    } catch (err) {
-      // Keep going; if we end up with 0 skills overall, we fail below.
-      console.error(`Failed to scrape skills from ${url}:`, err?.message || err);
+  // 1) Preferred: scrape from the user's public skills page
+  try {
+    const skillsPageUrl = getCredlySkillsPageUrl();
+    const skills = await scrapeSkillsFromSkillsPage(page, skillsPageUrl);
+    for (const s of skills) allSkills.add(s);
+  } catch (err) {
+    console.error('Failed to scrape skills page:', err?.message || err);
+  }
+
+  // 2) Fallback: scrape each public badge page (requires badge links present in README)
+  if (allSkills.size === 0) {
+    if (badgeUrls.length === 0) {
+      throw new Error('No Credly badge public_url links found in README.md and skills page scraping returned 0 skills');
+    }
+
+    for (const url of badgeUrls) {
+      try {
+        const skills = await scrapeSkillsFromBadge(page, url);
+        for (const s of skills) allSkills.add(s);
+        // be polite
+        await page.waitForTimeout(500);
+      } catch (err) {
+        // Keep going; if we end up with 0 skills overall, we fail below.
+        console.error(`Failed to scrape skills from ${url}:`, err?.message || err);
+      }
     }
   }
 
