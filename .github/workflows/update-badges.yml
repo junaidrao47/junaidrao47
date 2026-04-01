@@ -1,13 +1,22 @@
 name: Update Badges
+
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *" # daily at 03:00 UTC
+
+concurrency:
+  group: update-badges
+  cancel-in-progress: true
+
 jobs:
   update-badges:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - uses: pemtajo/badge-readme@main
         with:
           CREDLY_USER: fahad-rajput.68e65434
-          NUMBER_LAST_BADGES: 0  # 0 = show all badges
+          NUMBER_LAST_BADGES: 0 # 0 = show all badges
