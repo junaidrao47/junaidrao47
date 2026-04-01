@@ -51,8 +51,8 @@
 ## 📊 GitHub Stats
 
 <p align="center">
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=radical" />
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=radical" />
+<img src="https://github-readme-stats.vercel.app/api?username=junaidrao47&show_icons=true&theme=radical" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=junaidrao47&theme=radical" />
 </p>
 
 ---
@@ -60,6 +60,11 @@
 ## 🏆 Certifications
 
 <!--START_SECTION:badges-->
+<p align="center">
+	<a href="https://www.credly.com/badges/9446481c-3d97-403d-a58a-9b283ea854d6/public_url" title="Cloud DevOps was issued by Intel to Rao Muhammad Junaid.">
+		<img src="https://images.credly.com/images/f953f0f3-d130-4d6d-8d5d-62d8b24eee9b/linkedin_thumb_image.png" width="120" alt="Cloud DevOps" />
+	</a>
+</p>
 <!--END_SECTION:badges-->
 
 - 🎖️ View my certifications on Credly:  
