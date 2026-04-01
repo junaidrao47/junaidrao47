@@ -1,0 +1,9 @@
+# markdownlint-cli2 configuration
+# This repository's README is designed for GitHub profile rendering
+# and intentionally uses inline HTML, long badge lines, and bare URLs.
+config:
+  MD013: false # line-length
+  MD022: false # blanks-around-headings
+  MD033: false # no-inline-html
+  MD034: false # no-bare-urls
+  MD045: false # no-alt-text
