@@ -59,6 +59,9 @@
 
 ## 🏆 Certifications
 
+<!--START_SECTION:badges-->
+<!--END_SECTION:badges-->
+
 - 🎖️ View my certifications on Credly:  
 👉 https://www.credly.com/users/muhammad-junaid.370fa5c7
 
