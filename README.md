@@ -59,6 +59,12 @@
 
 ## 🏆 Certifications
 
+## 🧩 Credly Skills
+
+<!--START_SECTION:credly_skills-->
+(Run the "Update Credly Skills" workflow to populate this.)
+<!--END_SECTION:credly_skills-->
+
 <!--START_SECTION:badges-->
 <p align="center">
   <a href="https://www.credly.com/badges/9446481c-3d97-403d-a58a-9b283ea854d6/public_url" title="Cloud DevOps was issued by Intel to Rao Muhammad Junaid.">
