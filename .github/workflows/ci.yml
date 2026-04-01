@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Lint GitHub Actions workflows (actionlint)
-        uses: rhysd/actionlint@v1
+        uses: rhysd/actionlint@v1.7.12
 
       - name: Lint Markdown (README)
         uses: DavidAnson/markdownlint-cli2-action@v18
