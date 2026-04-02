@@ -66,14 +66,8 @@
 <!--END_SECTION:credly_skills-->
 
 <!--START_SECTION:badges-->
-<p align="center">
-  <a href="https://www.credly.com/badges/9446481c-3d97-403d-a58a-9b283ea854d6/public_url" title="Cloud DevOps was issued by Intel to Rao Muhammad Junaid.">
-    <img src="https://images.credly.com/images/f953f0f3-d130-4d6d-8d5d-62d8b24eee9b/linkedin_thumb_image.png" width="120" alt="Cloud DevOps" />
-  </a>
-  <a href="https://www.credly.com/badges/5f5357fa-68e6-49ac-8b8c-9a283b66b95e/public_url" title="Backend Engineer Learning Path was issued by Datadog to Muhammad Junaid.">
-    <img src="https://images.credly.com/images/6f445fe0-ec75-4f53-af4d-95534512a0bf/linkedin_thumb_blob" width="120" alt="Backend Engineer Learning Path" />
-  </a>
-</p>
+<a href="https://www.credly.com/badges/9446481c-3d97-403d-a58a-9b283ea854d6" title="Cloud DevOps"><img src="https://images.credly.com/size/80x80/images/f953f0f3-d130-4d6d-8d5d-62d8b24eee9b/image.png" alt="Cloud DevOps" width="80" height="80"></a>
+<a href="https://www.credly.com/badges/5f5357fa-68e6-49ac-8b8c-9a283b66b95e" title="Backend Engineer Learning Path"><img src="https://images.credly.com/size/80x80/images/6f445fe0-ec75-4f53-af4d-95534512a0bf/blob" alt="Backend Engineer Learning Path" width="80" height="80"></a>
 <!--END_SECTION:badges-->
 
 - 🎖️ View my certifications on Credly:  
